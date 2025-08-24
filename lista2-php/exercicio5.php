@@ -24,7 +24,7 @@ Class Voo
     }
 
     public function GetProximoAssento() {
-        for ($i=1; $i < count($this->assentos); $i++) {
+        for ($i=1; $i <= count($this->assentos); $i++) {
             if ($this->assentos[$i] == 0)
                 return $i;
         }
@@ -32,7 +32,7 @@ Class Voo
     }
 
     public function VerificaAssento($assento) {
-        for ($i=1; $i < count($this->assentos); $i++) {
+        for ($i=1; $i <= count($this->assentos); $i++) {
             if ($assento == $i && $this->assentos[$i] != 0)
                 return 1;
         }
@@ -51,7 +51,7 @@ Class Voo
     
     public function getVagas() {
         $quantidade = 0;
-        for ($i=1; $i < count($this->assentos); $i++) {
+        for ($i=1; $i <= count($this->assentos); $i++) {
             if ($this->VerificaAssento($i) == 0) {
                 $quantidade++;
             }
