@@ -116,11 +116,6 @@ class Data
         return $this->anoBissexto($this->ano);
     }
 
-    function subtraiData($data)
-    {
-
-    }
-
     function comparaDatas($dia, $mes, $ano)
     {
         if ($this->getDia() == $dia && $this->getMes() == $mes && $this->getAno() == $ano)
@@ -158,27 +153,27 @@ class Data
 }
 
 // Programa de teste
-echo "=== TESTE DA CLASSE DATA ===<br><br>";
+//echo "=== TESTE DA CLASSE DATA ===<br><br>";
 
-$data = new Data(20, 03, 1989);
+//$data = new Data(20, 03, 1989);
 
-echo $data->retornaData() . "<br>";
+//echo $data->retornaData() . "<br>";
 
-$data->adicionarDia();
-echo $data->retornaData() . "<br>";
+//$data->adicionarDia();
+//echo $data->retornaData() . "<br>";
 
-$data->diminuirDia();
-echo $data->retornaData() . "<br>";
+//$data->diminuirDia();
+//echo $data->retornaData() . "<br>";
 
-if ($data->ehAnoBissexto())
-    echo $data->getAno() . " é ano bissexto<br>";
-else
-    echo $data->getAno() . " não é ano bissexto<br>";
+//if ($data->ehAnoBissexto())
+//    echo $data->getAno() . " é ano bissexto<br>";
+//else
+//    echo $data->getAno() . " não é ano bissexto<br>";
 
-$data1 = new Data(21, 07, 2025);
-$data2 = new Data(01, 07, 2025);
+//$data1 = new Data(21, 07, 2025);
+//$data2 = new Data(01, 07, 2025);
 
-echo "Diferença: " . $data1->diferencaEmDias($data2) . " dias\n"; // 11 dias
+//echo "Diferença: " . $data1->diferencaEmDias($data2) . " dias<br>"; // 11 dias
 
 //echo $data->comparaDatas(20, 03, 1989);
 
