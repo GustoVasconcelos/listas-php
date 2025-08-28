@@ -24,35 +24,34 @@ Class Voo
     }
 
     public function getProximoAssento() {
-        for ($i=1; $i <= count($this->assentos); $i++) {
-            if ($this->assentos[$i] == 0)
-                return $i;
+        $proximoLivre = array_search(0, $this->assentos);
+        
+        if ($proximoLivre !== false) {
+            return $proximoLivre;
         }
-        return "Nao ha assentos livres.";
+    
+        return 0;
     }
 
-    public function verificaAssento($assento) : bool {
-        return $this->assentos[$assento] != 0 ? true : false;
+    public function verificaAssento($assento) {
+        if (isset($this->assentos[$assento]) && $this->assentos[$assento] != 0) {
+            return 1; // Ocupado
+        }
+        return 0; // Livre ou não existe
     }
 
     public function ocupaAssento($assento) {
-        if ($this->VerificaAssento($assento) == false)
+        if ($this->VerificaAssento($assento) == 0)
         {
             $this->assentos[$assento] = 1;
-            return "Assento $assento ocupado com sucesso";
-        } else {
-            return "Assento ocupado, escolha outro.";
+            return true;
         }
+        return false;
     }
     
     public function getVagas() {
-        $quantidade = 0;
-        for ($i=1; $i <= count($this->assentos); $i++) {
-            if ($this->VerificaAssento($i) == 0) {
-                $quantidade++;
-            }
-        }
-        return $quantidade;
+        $contagem = array_count_values($this->assentos);
+        return $contagem[0] ?? 0;
     }
 
     public function getVoo() {
@@ -65,17 +64,50 @@ Class Voo
 
 }
 
+// criando o Voo
 $dataVoo1 = new Data(20, 10, 2025);
 $voo1 = new Voo(1001, $dataVoo1);
 
-echo $voo1->ocupaAssento(1) . "<br>";
-echo $voo1->ocupaAssento(2) . "<br>";
-echo $voo1->ocupaAssento(3) . "<br>";
-echo "Assento " . $voo1->getProximoAssento() . " é o próximo livre.<br>";
-echo "Assento" . $voo1->verificaAssento(3) . " ocupado.<br>";
-echo $voo1->getVagas() . " assentos livres.<br>";
+echo "--- Tentando ocupar assentos ---<br>";
+
+// Tentativa 1: Ocupar assento 1 (deve funcionar)
+if ($voo1->ocupaAssento(1)) { // CORREÇÃO: Sem ';' e comparação direta com o booleano
+    echo "Assento 1 ocupado com sucesso!<br>";
+} else {
+    echo "Falha ao ocupar o assento 1.<br>";
+}
+
+// Tentativa 2: Ocupar assento 1 novamente (deve falhar)
+if ($voo1->ocupaAssento(1)) {
+    echo "Assento 1 ocupado com sucesso!<br>";
+} else {
+    echo "Falha ao ocupar o assento 1, pois já está ocupado.<br>";
+}
+
+// Tentativa 3: Ocupar assento 2 (deve funcionar)
+if ($voo1->ocupaAssento(2)) {
+    echo "Assento 2 ocupado com sucesso!<br>";
+} else {
+    echo "Falha ao ocupar o assento 2.<br>";
+}
+
+echo "<br>--- Status do Voo ---<br>";
+
+// Mostra o próximo assento livre (deve ser o 3)
+echo "O próximo assento livre é o: " . $voo1->getProximoAssento() . "<br>";
+
+// Verifica o status de um assento específico (o 3, que está livre)
+if ($voo1->verificaAssento(3) == 0) {
+    echo "O assento 3 está livre.<br>";
+} else {
+    echo "O assento 3 está ocupado.<br>";
+}
+
+// Mostra o total de vagas (100 - 2 ocupados = 98)
+echo "Total de assentos livres: " . $voo1->getVagas() . "<br>";
+
+// Informações do voo
 echo "Número do Voo: " . $voo1->getVoo() . "<br>";
 echo "Data do Voo: " . $voo1->getDataVoo()->retornaData();
-//print_r($voo1->getAssentos());
 
 ?>
