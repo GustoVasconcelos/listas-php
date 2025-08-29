@@ -1,0 +1,64 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 900px;
+}
+
+.info-voo {
+    background-color: #e9ecef;
+    border-radius: .5rem;
+}
+
+.mapa-assentos {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* 10 colunas */
+    gap: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: .5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.assento {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: default;
+    transition: transform 0.2s ease;
+}
+
+.assento.livre {
+    background-color: #28a745; /* Verde */
+}
+
+.assento.ocupado {
+    background-color: #dc3545; /* Vermelho */
+    cursor: not-allowed;
+}
+
+.legenda-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.legenda-cor {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border-radius: 4px;
+}
+
+.livre {
+    background-color: #28a745; /* Verde */
+}
+
+.ocupado {
+    background-color: #dc3545; /* Vermelho */
+}

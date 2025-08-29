@@ -19,7 +19,9 @@ class Retangulo
     }
 
     public function setLargura($novaLargura){
-        $this->largura = $novaLargura;
+        if ($novaLargura > 0) {
+            $this->largura = $novaLargura;
+        }
     }
 
     public function getAltura(){
@@ -27,18 +29,12 @@ class Retangulo
     }
 
     public function setAltura($novaAltura){
-        $this->altura = $novaAltura;
+        if ($novaAltura > 0) {
+            $this->altura = $novaAltura;
+        }
     }
 
     public function ehQuadrado(){
-        return $this->largura == $this->altura ? "É quadrado." : "Não é quadrado.";
+        return $this->largura == $this->altura; // Retorna true ou false
     }
 }
-
-$r1 = new Retangulo();
-$r1->setAltura(2);
-$r1->setLargura(2);
-
-echo $r1->ehQuadrado();
-
-?>

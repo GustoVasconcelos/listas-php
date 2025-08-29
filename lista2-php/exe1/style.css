@@ -1,0 +1,31 @@
+body {
+    background-color: #f4f7f6;
+}
+
+.visualizador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    background-color: #e9ecef;
+    border: 1px dashed #ced4da;
+    border-radius: .5rem;
+    padding: 20px;
+    transition: background-color 0.3s;
+}
+
+.retangulo-desenho {
+    background-color: #0d6efd;
+    border: 2px solid #0a58ca;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.resultado-texto.eh-quadrado {
+    color: #198754; /* Verde */
+    font-weight: bold;
+}
+
+.resultado-texto.nao-eh-quadrado {
+    color: #0d6efd; /* Azul */
+}
