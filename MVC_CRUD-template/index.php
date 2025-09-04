@@ -17,6 +17,12 @@ if ($controller == 'cliente') {
         case 'salvar':
             $clienteController->cadastrar();
             break;
+        case 'alterar':
+            $clienteController->alterar();
+            break;
+        case 'update':
+            $clienteController->update();
+            break;
         default:
             echo "Ação inválida!";
     }

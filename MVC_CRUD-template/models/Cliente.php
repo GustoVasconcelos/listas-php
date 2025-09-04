@@ -43,14 +43,31 @@ class Cliente {
 
     public function recoveryById($idBusca) {
         // return a linha da tabela com id igual ao parametro
+        $comandoSQL = "select * from clientes where id = :param1";
+        $acesso = $this->conexao->prepare($comandoSQL);
+
+        $acesso->bindParam(":param1", $idBusca);
+        $acesso->execute();
+        return $acesso;
     }
 
     public function recoveryByName($nomeBusca) {
         // retorna a linha da tabela com o nome igual
     }
 
-    public function update($id, $nome, $CPF, $email) {
+    public function update($id, $nome, $cpf, $email) {
         // atualiza o ID com os dados do paramentro
+        $comandoSQL = "update clientes set
+                       nome = :param2,
+                       cpf = :param3,
+                       email = :param4
+                       WHERE id = :param1";
+        $acesso = $this->conexao->prepare($comandoSQL);
+        $acesso->bindParam(":param2", $nome);
+        $acesso->bindParam(":param3", $cpf);
+        $acesso->bindParam(":param4", $email);
+        $acesso->bindParam(":param1", $id);
+        $acesso->execute();
     }
 
     public function delete($id) {

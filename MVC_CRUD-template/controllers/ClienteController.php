@@ -32,7 +32,18 @@ class ClienteController {
     }
 
     public function alterar() {
+        $id = $_GET['id'];
+        $user = $this->clienteModel->recoveryById($id);
         require_once "views/alterar.php";
+    }
+
+    public function update() {
+        if (isset($_POST['id'], $_POST['nome'], $_POST['cpf'] , $_POST['email'])) {
+            $this->clienteModel->update($_POST['id'], $_POST['nome'], $_POST['cpf'] , $_POST['email']);
+            header("Location: index.php?controller=cliente&action=listar");
+        } else {
+            echo "Erro: Preencha todos os campos obrigatórios!";
+        }
     }
 
 }

@@ -9,15 +9,17 @@
 <body>
     <div class="m-3">
         <h1>Alterar Cliente</h1>
-        <form action="index.php?controller=cliente&action=alterar" method="POST">
+        <?php $usuario = $user->fetch(PDO::FETCH_ASSOC) ?>
+        <form action="index.php?controller=cliente&action=update" method="POST">
+            <input type="hidden" name="id" id="id" value="<?php echo $usuario['id'] ?>">
             <label for="nome">Nome:</label><br>
-            <input type="text" name="nome" id="nome" required><br><br>
+            <input type="text" name="nome" id="nome" value="<?php echo $usuario['nome'] ?>" required><br><br>
 
             <label for="cpf">CPF:</label><br>
-            <input type="text" name="cpf" id="cpf"><br><br>
+            <input type="text" name="cpf" id="cpf" value="<?php echo $usuario['cpf'] ?>"><br><br>
 
             <label for="email">Email:</label><br>
-            <input type="email" name="email" id="email" required><br><br>
+            <input type="email" name="email" id="email" value="<?php echo $usuario['email'] ?>" required><br><br>
 
             <button class="btn btn-primary" type="submit">Alterar</button>
         </form>

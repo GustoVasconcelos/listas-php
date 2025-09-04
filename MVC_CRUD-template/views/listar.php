@@ -16,6 +16,8 @@
                     <th>Nome</th>
                     <th>CPF</th>
                     <th>Email</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +27,8 @@
                     <td><?php echo $cliente['nome']; ?></td>
                     <td><?php echo $cliente['cpf']; ?></td>
                     <td><?php echo $cliente['email']; ?></td>
+                    <td><a class="btn btn-warning" href="index.php?controller=cliente&action=alterar&id=<?php echo $cliente['id'] ?>">Editar</a></td>
+                    <td><a class="btn btn-danger" href="">Excluir</a></td>
                 </tr>
                 <?php endwhile; ?>
             </tbody>
