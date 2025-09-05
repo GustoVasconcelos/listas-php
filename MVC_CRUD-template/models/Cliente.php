@@ -71,6 +71,9 @@ class Cliente {
     }
 
     public function delete($id) {
-        // excluir do banco o cliente com id
+        $comandoSQL = "delete from clientes where id = :param1";
+        $acesso = $this->conexao->prepare($comandoSQL);
+        $acesso->bindParam(":param1", $id);
+        $acesso->execute();
     }
 }

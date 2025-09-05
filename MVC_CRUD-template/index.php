@@ -23,6 +23,9 @@ if ($controller == 'cliente') {
         case 'update':
             $clienteController->update();
             break;
+        case 'delete':
+            $clienteController->delete();
+            break;
         default:
             echo "Ação inválida!";
     }

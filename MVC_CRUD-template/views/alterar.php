@@ -9,7 +9,6 @@
 <body>
     <div class="m-3">
         <h1>Alterar Cliente</h1>
-        <?php $usuario = $user->fetch(PDO::FETCH_ASSOC) ?>
         <form action="index.php?controller=cliente&action=update" method="POST">
             <input type="hidden" name="id" id="id" value="<?php echo $usuario['id'] ?>">
             <label for="nome">Nome:</label><br>

@@ -28,7 +28,8 @@
                     <td><?php echo $cliente['cpf']; ?></td>
                     <td><?php echo $cliente['email']; ?></td>
                     <td><a class="btn btn-warning" href="index.php?controller=cliente&action=alterar&id=<?php echo $cliente['id'] ?>">Editar</a></td>
-                    <td><a class="btn btn-danger" href="">Excluir</a></td>
+                    <td><a class="btn btn-danger" href="index.php?controller=cliente&action=delete&id=<?php echo $cliente['id'] ?>" 
+                           onclick="return confirm('Tem certeza que deseja excluir este usuário? A ação não pode ser desfeita.');">Excluir</a></td>
                 </tr>
                 <?php endwhile; ?>
             </tbody>

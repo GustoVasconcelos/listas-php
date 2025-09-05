@@ -9,7 +9,7 @@
 <body>
     <div class="m-3">
         <h1>Cadastrar Novo Cliente</h1>
-        <form action="index.php?controller=cliente&action=cadastrar" method="POST">
+        <form action="index.php?controller=cliente&action=salvar" method="POST">
             <label for="nome">Nome:</label><br>
             <input type="text" name="nome" id="nome" required><br><br>
 
