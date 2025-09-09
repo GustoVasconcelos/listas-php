@@ -15,13 +15,21 @@ if ($controller == 'cliente') {
             $clienteController->adicionar();
             break;
         case 'salvar':
-            $clienteController->cadastrar();
+            $nomeAlterar = $_POST['nome'];
+            $cpfAlterar = $_POST['cpf'];
+            $emailAlterar = $_POST['email'];
+            $clienteController->cadastrar($nomeAlterar, $cpfAlterar, $emailAlterar);
             break;
         case 'alterar':
-            $clienteController->alterar();
+            $idAlterar = $_GET['id'];
+            $clienteController->alterar($idAlterar);
             break;
         case 'update':
-            $clienteController->update();
+            $idAlterar = $_POST['id'];
+            $nomeAlterar = $_POST['nome'];
+            $cpfAlterar = $_POST['cpf'];
+            $emailAlterar = $_POST['email'];
+            $clienteController->update($idAlterar, $nomeAlterar, $cpfAlterar, $emailAlterar);
             break;
         case 'delete':
             $clienteController->delete();

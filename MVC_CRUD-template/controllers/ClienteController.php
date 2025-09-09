@@ -22,25 +22,24 @@ class ClienteController {
         require_once "views/adicionar.php";
     }
 
-    public function cadastrar() {
-        if (isset($_POST['nome'], $_POST['cpf'] , $_POST['email'])) {
-            $this->clienteModel->create($_POST['nome'], $_POST['cpf'], $_POST['email']);
+    public function cadastrar($nome, $cpf, $email) {
+        if (isset($nome, $cpf, $email)) {
+            $this->clienteModel->create($nome, $cpf, $email);
             header("Location: index.php?controller=cliente&action=listar");
         } else {
             echo "Erro: Preencha todos os campos obrigatórios!";
         }
     }
 
-    public function alterar() {
-        $id = $_GET['id'];
-        $returnUser = $this->clienteModel->recoveryById($id);
+    public function alterar($idAlterar) {
+        $returnUser = $this->clienteModel->recoveryById($idAlterar);
         $usuario = $returnUser->fetch(PDO::FETCH_ASSOC);
         require_once "views/alterar.php";
     }
 
-    public function update() {
-        if (isset($_POST['id'], $_POST['nome'], $_POST['cpf'] , $_POST['email'])) {
-            $this->clienteModel->update($_POST['id'], $_POST['nome'], $_POST['cpf'] , $_POST['email']);
+    public function update($id, $nome, $cpf, $email) {
+        if (isset($id, $nome, $cpf, $email)) {
+            $this->clienteModel->update($id, $nome, $cpf, $email);
             header("Location: index.php?controller=cliente&action=listar");
         } else {
             echo "Erro: Preencha todos os campos obrigatórios!";

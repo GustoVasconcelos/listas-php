@@ -34,7 +34,7 @@ class Cliente {
 
     public function recoveryAll() {
         // return todos os registros da tabela
-        $comandoSQL = "select * from clientes";
+        $comandoSQL = "select * from ".$this->tableName;
         $acesso = $this->conexao->prepare($comandoSQL);
         $acesso->execute();
         return $acesso;
@@ -43,7 +43,7 @@ class Cliente {
 
     public function recoveryById($idBusca) {
         // return a linha da tabela com id igual ao parametro
-        $comandoSQL = "select * from clientes where id = :param1";
+        $comandoSQL = "select * from ".$this->tableName." where id = :param1";
         $acesso = $this->conexao->prepare($comandoSQL);
 
         $acesso->bindParam(":param1", $idBusca);
@@ -57,7 +57,7 @@ class Cliente {
 
     public function update($id, $nome, $cpf, $email) {
         // atualiza o ID com os dados do paramentro
-        $comandoSQL = "update clientes set
+        $comandoSQL = "update ".$this->tableName." set
                        nome = :param2,
                        cpf = :param3,
                        email = :param4
@@ -71,7 +71,7 @@ class Cliente {
     }
 
     public function delete($id) {
-        $comandoSQL = "delete from clientes where id = :param1";
+        $comandoSQL = "delete from ".$this->tableName." where id = :param1";
         $acesso = $this->conexao->prepare($comandoSQL);
         $acesso->bindParam(":param1", $id);
         $acesso->execute();
