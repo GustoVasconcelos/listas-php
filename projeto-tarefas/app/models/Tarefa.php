@@ -82,7 +82,7 @@ class Tarefa {
             $acesso->bindParam(":param1", $id);
 
             if ($acesso->execute()) {
-                return true;
+                return $acesso;
             }
             return false;       
         } catch (PDOException $erro) {

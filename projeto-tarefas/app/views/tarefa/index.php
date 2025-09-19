@@ -24,9 +24,9 @@
                     <td><?php echo date('d/m/Y', strtotime($tarefa['data_vencimento'])); ?></td>
                     <td>
                         <?php if ($tarefa['status'] == 'concluida'): ?>
-                            <span class="badge bg-success">Concluída</span>
+                            <a href="index.php?action=change&id=<?php echo $tarefa['id']; ?>&status=<?php echo $tarefa['status']; ?>" class="btn badge bg-success" onclick="return confirm('Deseja alterar o status?');">Concluída</a>
                         <?php else: ?>
-                            <span class="badge bg-warning text-dark">Pendente</span>
+                            <a href="index.php?action=change&id=<?php echo $tarefa['id']; ?>&status=<?php echo $tarefa['status']; ?>" class="btn badge bg-warning text-dark" onclick="return confirm('Deseja alterar o status?');">Pendente</a>
                         <?php endif; ?>
                     </td>
                     <td>
