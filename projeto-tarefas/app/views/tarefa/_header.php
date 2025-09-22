@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container mt-3">
-        <header class="text-center mb-4">
+    <div class="container mt-5">
+        <header class="d-flex justify-content-between align-items-center mb-4">
             <h1>Gerenciador de Tarefas</h1>
+            <div>
+                <span>Olá, <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>!</span>
+                <a href="index.php?action=logout" class="btn btn-outline-danger ms-2">Sair</a>
+            </div>
         </header>

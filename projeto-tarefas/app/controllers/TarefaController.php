@@ -19,7 +19,7 @@ class TarefaController {
             $this->tarefaModel->create($titulo, $descricao, $data_vencimento, $status);
             
             // Redireciona para a página principal
-            header('Location: index.php');
+            header('Location: index.php?action=listar');
         } else {
             // Se não, apenas mostra o formulário de criação
             require ROOT_PATH . '/app/views/tarefa/create.php';
@@ -38,16 +38,16 @@ class TarefaController {
         $this->tarefaModel->update($id, $titulo, $descricao, $data_vencimento, $status);
             
         // Redireciona para a página principal
-        header('Location: index.php');
+        header('Location: index.php?action=listar');
     }
 
     public function change($id, $status) {
         $this->tarefaModel->changeStatus($id, $status);
-        header('Location: index.php');
+        header('Location: index.php?action=listar');
     }
 
     public function delete($id) {
         $this->tarefaModel->delete($id);
-        header('Location: index.php');
+        header('Location: index.php?action=listar');
     }
 }
