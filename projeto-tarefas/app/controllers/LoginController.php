@@ -12,15 +12,18 @@ class LoginController {
         require ROOT_PATH . '/app/views/login/index.php';
     }
 
-    public function login() {
+    // processa o login
+    public function login($email, $senha) {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $email = $_POST['email'];
-            $senha = $_POST['senha'];
-
+            // recebe os dados da view e chama o metodo findUser do model do usuario para buscar no banco
             $localizar = $this->usuarioModel->findUser($email);
+
+            // se achar, retora o usuario, senao retorna false
             $usuario = $localizar->fetch(PDO::FETCH_ASSOC);
 
+            // se o usuario existir e a senha estiver correta
             if($usuario && password_verify($senha, $usuario['senha'])) {
+                // abre a sessao e salva os dados do usuario em variaveis de sessao
                 session_start();
                 $_SESSION['usuario_id'] = $usuario['id'];
                 $_SESSION['usuario_nome'] = $usuario['nome'];
@@ -29,7 +32,7 @@ class LoginController {
                 header('Location: index.php?action=listar');
                 exit;
             } else {
-                // login falhou
+                // se o login falhou
                 $erro = "E-mail ou senha inválidos.";
                 // recarrega a view de login com a mensagem de erro
                 require ROOT_PATH . '/app/views/login/index.php';

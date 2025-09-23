@@ -12,12 +12,12 @@
             </div>
             <div class="mb-3">
                 <label for="descricao" class="form-label">Descrição</label>
-                <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+                <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="data_vencimento" class="form-label">Data de Vencimento</label>
-                    <input type="date" class="form-control" id="data_vencimento" name="data_vencimento">
+                    <input type="date" class="form-control" id="data_vencimento" name="data_vencimento" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="status" class="form-label">Status</label>
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-success">Salvar</button>
-            <a href="index.php" class="btn btn-secondary">Cancelar</a>
+            <a href="index.php?action=listar" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 </div>

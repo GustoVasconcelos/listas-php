@@ -31,7 +31,9 @@ if (in_array($action, ['showLogin', 'login', 'logout'])) {
     $loginController = new LoginController();
     switch($action) {
         case 'login':
-            $loginController->login();
+            $email = htmlspecialchars($_POST['email']);
+            $senha = htmlspecialchars($_POST['senha']);
+            $loginController->login($email, $senha);
             break;
         case 'logout':
             $loginController->logout();
@@ -46,9 +48,6 @@ if (in_array($action, ['showLogin', 'login', 'logout'])) {
     $tarefaController = new TarefaController();
     
     switch ($action) {
-        case 'listar':
-            $tarefaController->listar();
-            break;
         case 'create':
             $titulo = htmlspecialchars($_POST['titulo']);
             $descricao = htmlspecialchars($_POST['descricao']);
@@ -83,7 +82,9 @@ if (in_array($action, ['showLogin', 'login', 'logout'])) {
             $idTarefa = $_GET['id'];
             $tarefaController->delete($idTarefa);
             break;
+        case 'listar':
         default:
-            echo "Ação inválida!";
+            $tarefaController->listar();
+            break;
     }
 }
