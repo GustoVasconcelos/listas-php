@@ -3,8 +3,8 @@
 class TarefaController {
     private $tarefaModel;
 
-    public function __construct() {
-        $this->tarefaModel = new Tarefa();
+    public function __construct($database) {
+        $this->tarefaModel = new Tarefa($database);
     }
 
     // lista todas as tarefas, acao principal

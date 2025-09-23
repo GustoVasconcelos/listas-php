@@ -11,9 +11,8 @@ class Usuario {
     private $tableName = 'usuarios';
 
     //método construtor, que inicializa o objeto do banco de dados
-    public function __construct() {
+    public function __construct($database) {
         // inicializa o atributo conexao (Tipo Database) com os dados de acesso do banco
-        $database = new Database('localhost', 'projeto_tarefas', 'root', 'doidos32');
         $this->conexao = $database->getConnection();
     }
 

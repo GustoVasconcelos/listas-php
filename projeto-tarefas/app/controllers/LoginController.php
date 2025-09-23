@@ -3,8 +3,8 @@
 class LoginController {
     private $usuarioModel;
 
-    public function __construct() {
-        $this->usuarioModel = new Usuario();
+    public function __construct($database) {
+        $this->usuarioModel = new Usuario($database);
     }
 
     // mostra a página de login
