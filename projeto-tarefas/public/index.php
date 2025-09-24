@@ -51,10 +51,11 @@ if (in_array($action, ['showLogin', 'login', 'logout'])) {
     $tarefaController = new TarefaController($database);
     
     switch ($action) {
+        case 'new':
+            $tarefaController->new();
+            break;
         case 'create':
-            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-                $tarefaController->create(null, null, null, null);
-            } else {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $titulo = htmlspecialchars(trim($_POST['titulo']));
                 $descricao = htmlspecialchars(trim($_POST['descricao']));
                 $data_vencimento = htmlspecialchars(trim($_POST['data_vencimento']));

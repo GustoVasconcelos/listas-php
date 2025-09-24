@@ -9,10 +9,21 @@ class TarefaController {
 
     // lista todas as tarefas, acao principal
     public function listar() {
-        $tarefas = $this->tarefaModel->listAll();
+        $filtro = $_GET['filtro'] ?? 'todas';
+        if ($filtro == "todas") {
+            $tarefas = $this->tarefaModel->listAll();
+        } else {
+            $tarefas = $this->tarefaModel->listAll($filtro);
+        }
+
+        $filtro_ativo = $filtro;
         require ROOT_PATH . '/app/views/tarefa/index.php';
     }
 
+    // processa a pagina de nova tarefa
+    public function new() {
+        require ROOT_PATH . '/app/views/tarefa/create.php';
+    }
     // processa a criacao de tarefas
     public function create($titulo, $descricao, $data_vencimento, $status) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -21,9 +32,6 @@ class TarefaController {
             
             // redireciona para a página principal
             header('Location: index.php?action=listar');
-        } else {
-            // se não, apenas mostra o formulário de criação
-            require ROOT_PATH . '/app/views/tarefa/create.php';
         }
     }
 

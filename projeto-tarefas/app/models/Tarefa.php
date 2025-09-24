@@ -56,16 +56,26 @@ class Tarefa {
 
     // métodos de acesso ao banco de dados
 
-    public function listAll() {
+    public function listAll($status = null) {
         //método de buscar todas as tarefas no banco
         try {
             $comandoSQL= "SELECT * FROM ".$this->tableName;
-            $acesso = $this->conexao->prepare($comandoSQL);
-
-            if ($acesso->execute()) {
-                return $acesso;
+            if($status && in_array($status, ['pendente','concluida'])) {
+                $comandoSQL .= " WHERE status = ?";
             }
-            return false;       
+
+            $comandoSQL .= " ORDER BY data_vencimento ASC";
+            $acesso = $this->conexao->prepare($comandoSQL);
+            if ($status && in_array($status, ['pendente', 'concluida'])) {
+                if($acesso->execute([$status])) {
+                    return $acesso;
+                }
+            } else {
+                if($acesso->execute()) {
+                    return $acesso;
+                }
+            }
+            return $acesso;
         } catch (PDOException $erro) {
             echo $erro->getMessage();
         }
