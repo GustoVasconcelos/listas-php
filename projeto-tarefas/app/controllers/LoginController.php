@@ -13,16 +13,20 @@ class LoginController {
     }
 
     // processa o login
-    public function login($email, $senha) {
+    public function login() {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            //limpa todo o $_POST de uma só vez
+            $dados = inputHelper::limpaArray($_POST);
+            
             // recebe os dados da view e chama o metodo findUser do model do usuario para buscar no banco
-            $localizar = $this->usuarioModel->findUser($email);
+            $localizar = $this->usuarioModel->findUser($dados['email']);
 
             // se achar, retora o usuario, senao retorna false
             $usuario = $localizar->fetch(PDO::FETCH_ASSOC);
 
             // se o usuario existir e a senha estiver correta
-            if($usuario && password_verify($senha, $usuario['senha'])) {
+            if($usuario && password_verify($dados['senha'], $usuario['senha'])) {
                 // abre a sessao e salva os dados do usuario em variaveis de sessao
                 session_start();
                 $_SESSION['usuario_id'] = $usuario['id'];

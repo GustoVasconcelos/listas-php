@@ -11,6 +11,7 @@ require_once ROOT_PATH . '/app/controllers/TarefaController.php';
 require_once ROOT_PATH . '/app/models/Tarefa.php';
 require_once ROOT_PATH . '/app/controllers/LoginController.php';
 require_once ROOT_PATH . '/app/models/Usuario.php';
+require_once ROOT_PATH . '/app/helpers/InputHelper.php';
 
 // inicia o objeto de banco de dados
 $database = new Database('localhost', 'projeto_tarefas', 'root', '');
@@ -34,9 +35,7 @@ if (in_array($action, ['showLogin', 'login', 'logout'])) {
     $loginController = new LoginController($database);
     switch($action) {
         case 'login':
-            $email = htmlspecialchars(trim($_POST['email']));
-            $senha = htmlspecialchars(trim($_POST['senha']));
-            $loginController->login($email, $senha);
+            $loginController->login();
             break;
         case 'logout':
             $loginController->logout();
@@ -55,40 +54,20 @@ if (in_array($action, ['showLogin', 'login', 'logout'])) {
             $tarefaController->new();
             break;
         case 'create':
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $titulo = htmlspecialchars(trim($_POST['titulo']));
-                $descricao = htmlspecialchars(trim($_POST['descricao']));
-                $data_vencimento = htmlspecialchars(trim($_POST['data_vencimento']));
-                $status = htmlspecialchars(trim($_POST['status']));
-                $tarefaController->create($titulo, $descricao, $data_vencimento, $status);
-            }
+            $tarefaController->create();
             break;
         case 'edit':
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-                $idTarefa = $_GET['id'];
-                $tarefaController->edit($idTarefa);
+                $tarefaController->edit();
             } else {
-                $idTarefa = $_GET['id'];
-                $titulo = htmlspecialchars(trim($_POST['titulo']));
-                $descricao = htmlspecialchars(trim($_POST['descricao']));
-                $data_vencimento = htmlspecialchars(trim($_POST['data_vencimento']));
-                $status = htmlspecialchars(trim($_POST['status']));
-                $tarefaController->update($idTarefa, $titulo, $descricao, $data_vencimento, $status);
+                $tarefaController->update();
             }
             break;
         case 'change':
-            $idTarefa = $_GET['id'];
-            $status = $_GET['status'];
-            if ($status === "pendente") {
-                $changeStatus = "concluida";
-            } else {
-                $changeStatus = "pendente";
-            }
-            $tarefaController->change($idTarefa, $changeStatus);
+            $tarefaController->change();
             break;
         case 'delete':
-            $idTarefa = $_GET['id'];
-            $tarefaController->delete($idTarefa);
+            $tarefaController->delete();
             break;
         case 'listar':
         default:
