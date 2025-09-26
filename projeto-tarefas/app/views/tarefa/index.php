@@ -3,7 +3,7 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h2 class="mb-0">Minhas Tarefas</h2>
-        <a href="index.php?action=new" class="btn btn-primary">Nova Tarefa</a>
+        <a href="index.php?action=create" class="btn btn-primary">Nova Tarefa</a>
     </div>
     <div class="card-body">
         <div class="mb-3">

@@ -6,6 +6,16 @@
     </div>
     <div class="card-body">
         <form action="index.php?action=create" method="POST">
+            <?php if (!empty($erros)): ?>
+                <div class="alert alert-danger">
+                    <strong>Por favor, corrija os erros abaixo:</strong>
+                    <ul>
+                        <?php foreach ($erros as $erro): ?>
+                            <li><?php echo $erro; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título</label>
                 <input type="text" class="form-control" id="titulo" name="titulo">

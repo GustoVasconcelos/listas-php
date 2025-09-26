@@ -6,11 +6,19 @@ session_start();
 define('ROOT_PATH', dirname(__DIR__));
 
 // usa a constante para incluir os arquivos
+
+// classe do banco de dados
 require_once ROOT_PATH . '/config/database.php';
+
+// controllers
 require_once ROOT_PATH . '/app/controllers/TarefaController.php';
-require_once ROOT_PATH . '/app/models/Tarefa.php';
 require_once ROOT_PATH . '/app/controllers/LoginController.php';
+
+// models
+require_once ROOT_PATH . '/app/models/Tarefa.php';
 require_once ROOT_PATH . '/app/models/Usuario.php';
+
+// helpers
 require_once ROOT_PATH . '/app/helpers/InputHelper.php';
 
 // inicia o objeto de banco de dados
@@ -50,24 +58,17 @@ if (in_array($action, ['showLogin', 'login', 'logout'])) {
     $tarefaController = new TarefaController($database);
     
     switch ($action) {
-        case 'new':
-            $tarefaController->new();
-            break;
         case 'create':
             $tarefaController->create();
             break;
         case 'edit':
-            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-                $tarefaController->edit();
-            } else {
-                $tarefaController->update();
-            }
+            $tarefaController->edit($id);
             break;
         case 'change':
-            $tarefaController->change();
+            $tarefaController->change($id);
             break;
         case 'delete':
-            $tarefaController->delete();
+            $tarefaController->delete($id);
             break;
         case 'listar':
         default:

@@ -17,7 +17,7 @@ class LoginController {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             //limpa todo o $_POST de uma só vez
-            $dados = inputHelper::limpaArray($_POST);
+            $dados = InputHelper::limpaArray($_POST);
             
             // recebe os dados da view e chama o metodo findUser do model do usuario para buscar no banco
             $localizar = $this->usuarioModel->findUser($dados['email']);
