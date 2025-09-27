@@ -32,18 +32,20 @@ class TarefaController {
             // limpa todo o $_POST de uma só vez
             $dados = InputHelper::limpaArray($_POST);
             
-            // inicializa o array de erros, caso tenha a ter mais validacoes no futuro
+            // inicializa o array de erros
             $erros = [];
 
-            // valida o título
+            // valida se o título esta vazio
             if(!InputHelper::validaRequerido($dados['titulo'])) {
                 $erros[] = "O campo 'titulo' é obrigatório";
             }
 
+            // valida se a descricao esta vazia
             if(!InputHelper::validaRequerido($dados['descricao'])) {
                 $erros[] = "O campo 'descricao' é obrigatório";
             }
 
+            // valida se a data de vencimento esta vazia
             if(!InputHelper::validaRequerido($dados['data_vencimento'])) {
                 $erros[] = "O campo 'vencimento' é obrigatório";
             }
@@ -79,15 +81,17 @@ class TarefaController {
             // inicializa o array de erros
             $erros = [];
 
-            // valida o título
+            // valida se o título esta vazio
             if(!InputHelper::validaRequerido($dados['titulo'])) {
                 $erros[] = "O campo 'titulo' é obrigatório";
             }
 
+            // valida se a descricao esta vazia
             if(!InputHelper::validaRequerido($dados['descricao'])) {
                 $erros[] = "O campo 'descricao' é obrigatório";
             }
 
+            // valida se a data de vencimento esta vazia
             if(!InputHelper::validaRequerido($dados['data_vencimento'])) {
                 $erros[] = "O campo 'vencimento' é obrigatório";
             }
@@ -115,8 +119,10 @@ class TarefaController {
 
         // faz a validação e retorna qual status ele irá mudar no banco
         if ($status === "pendente") {
+            // se for "pendente", troca para "concluida"
             $changeStatus = "concluida";
         } else {
+            // senao troca para "pendente"
             $changeStatus = "pendente";
         }
         

@@ -54,7 +54,7 @@ if (in_array($action, ['showLogin', 'login', 'logout'])) {
             break;
     }
 } else {
-    // roteamento para as acoes da tarefa (se chefou aqui, o usuario esta logado)
+    // roteamento para as acoes da tarefa (se chegou aqui, o usuario esta logado)
     $tarefaController = new TarefaController($database);
     
     switch ($action) {

@@ -4,7 +4,6 @@ class InputHelper {
 
     // limpa a string aplicando trim e convertendo caracteres especiais em entidades HTML
     // isso ajuda a prevenir ataques XSS (cross-site-scripting)
-
     public static function limpaString(string $string) : string {
         // trim() - remove os espaços em branco no inicio e no final da string
         // htmlspecialchars - converte caracteres como <,>,& e etc em suas entidades HTML, impedindo que o navegador os interprete como código
