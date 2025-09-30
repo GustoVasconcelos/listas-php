@@ -7,6 +7,29 @@ class TarefaController {
         $this->tarefaModel = new Tarefa($database);
     }
 
+    // validador dos campos da tarefa
+    private function validadorCamposTarefa($dados) {
+        // inicializa o array de erros
+        $erros = [];
+
+        // valida se o título esta vazio
+        if(!InputHelper::validaRequerido($dados['titulo'])) {
+            $erros[] = "O campo 'titulo' é obrigatório";
+        }
+
+        // valida se a descricao esta vazia
+        if(!InputHelper::validaRequerido($dados['descricao'])) {
+            $erros[] = "O campo 'descricao' é obrigatório";
+        }
+
+        // valida se a data de vencimento esta vazia
+        if(!InputHelper::validaRequerido($dados['data_vencimento'])) {
+            $erros[] = "O campo 'vencimento' é obrigatório";
+        }
+
+        return $erros;
+    }
+
     // lista todas as tarefas, acao principal
     public function listar() {
         // se não tiver nenhum filtro ativo, ele vai usar por padrão o 'todas'
@@ -32,23 +55,8 @@ class TarefaController {
             // limpa todo o $_POST de uma só vez
             $dados = InputHelper::limpaArray($_POST);
             
-            // inicializa o array de erros
-            $erros = [];
-
-            // valida se o título esta vazio
-            if(!InputHelper::validaRequerido($dados['titulo'])) {
-                $erros[] = "O campo 'titulo' é obrigatório";
-            }
-
-            // valida se a descricao esta vazia
-            if(!InputHelper::validaRequerido($dados['descricao'])) {
-                $erros[] = "O campo 'descricao' é obrigatório";
-            }
-
-            // valida se a data de vencimento esta vazia
-            if(!InputHelper::validaRequerido($dados['data_vencimento'])) {
-                $erros[] = "O campo 'vencimento' é obrigatório";
-            }
+            // chama o validador de campos da tarefa
+            $erros = $this->validadorCamposTarefa($dados);
 
             // se nao tiver nenhum erro...
             if(empty($erros)) {
@@ -78,23 +86,8 @@ class TarefaController {
            // limpa todo o $_POST de uma só vez
             $dados = InputHelper::limpaArray($_POST);
 
-            // inicializa o array de erros
-            $erros = [];
-
-            // valida se o título esta vazio
-            if(!InputHelper::validaRequerido($dados['titulo'])) {
-                $erros[] = "O campo 'titulo' é obrigatório";
-            }
-
-            // valida se a descricao esta vazia
-            if(!InputHelper::validaRequerido($dados['descricao'])) {
-                $erros[] = "O campo 'descricao' é obrigatório";
-            }
-
-            // valida se a data de vencimento esta vazia
-            if(!InputHelper::validaRequerido($dados['data_vencimento'])) {
-                $erros[] = "O campo 'vencimento' é obrigatório";
-            }
+            // chama o validador de campos da tarefa
+            $erros = $this->validadorCamposTarefa($dados);
 
             // se nao tiver nenhum erro...
             if(empty($erros)) {

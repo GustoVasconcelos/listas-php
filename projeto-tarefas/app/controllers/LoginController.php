@@ -28,7 +28,7 @@ class LoginController {
             // se o usuario existir e a senha estiver correta
             if($usuario && password_verify($dados['senha'], $usuario['senha'])) {
                 // abre a sessao e salva os dados do usuario em variaveis de sessao
-                session_start();
+                session_regenerate_id(true);
                 $_SESSION['usuario_id'] = $usuario['id'];
                 $_SESSION['usuario_nome'] = $usuario['nome'];
 
@@ -46,7 +46,6 @@ class LoginController {
 
     // processa o logout
     public function logout() {
-        session_start();
         session_destroy();
         header('Location: index.php?action=showLogin');
         exit;
